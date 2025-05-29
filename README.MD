@@ -1,7 +1,7 @@
 <p align="center"><h1 align="center">News Portal</h1></p>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A simple news portal made in angular
     <br />
     <a href="https://samirelhassann.github.io/news-portal">View Demo</a>
     &middot;
