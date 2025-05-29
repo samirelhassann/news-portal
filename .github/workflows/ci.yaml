@@ -44,7 +44,7 @@ jobs:
       id: deployment
       uses: actions/upload-pages-artifact@v3 
       with:
-        path: dist/news-portal/browser
+        path: dist/news-portal
 
   deploy:
     environment:
