@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint --fix",
     "ts:check": "tsc --noEmit",
-    "github-build": "ng build --configuration production --base-href 'https://samirelhassann.github.io/news-portal/'"
+    "preghbuild": "node scripts/generate-env.js",
+    "ghbuild": "ng build --configuration production --base-href 'https://samirelhassann.github.io/news-portal/'"
   },
   "private": true,
   "dependencies": {
