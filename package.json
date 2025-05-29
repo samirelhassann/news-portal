@@ -4,8 +4,9 @@
   "scripts": {
     "prestart": "node scripts/generate-env.js",
     "start": "ng serve",
+    "start:prod": "ng serve --configuration production",
     "prebuild": "node scripts/generate-env.js",
-    "build": "ng build --configuration=production",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint --fix",
     "ts:check": "tsc --noEmit"
