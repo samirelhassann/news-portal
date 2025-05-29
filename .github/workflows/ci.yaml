@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Set up Node
+      uses: actions/setup-node@v3
       with:
-        node-version: '20' 
+        node-version: 18
 
     - name: Install pnpm
       run: npm install -g pnpm
@@ -26,36 +26,29 @@ jobs:
       run: pnpm install
 
     - name: Build project
+      env:
+        NODE_ENV: ${{ secrets.NODE_ENV }}
+        NEWS_API_HOST: ${{ secrets.NEWS_API_HOST }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
       run: pnpm run build
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: build
-        path: dist/ 
-  
+        path: dist/
+
   deploy-gh-pages:
     name: 🚀 Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
       with:
-        node-version: '20'
-
-    - name: Install pnpm
-      run: npm install -g pnpm
-
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Build project
-      run: pnpm run build
+        name: build
+        path: dist/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
