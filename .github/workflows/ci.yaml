@@ -1,7 +1,9 @@
 name: Build AngularJS Project
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 on:
   push:
@@ -35,6 +37,32 @@ jobs:
         NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
       run: pnpm run build
 
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build project
+      env:
+        NODE_ENV: ${{ secrets.NODE_ENV }}
+        NEWS_API_HOST: ${{ secrets.NEWS_API_HOST }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+      run: pnpm run build
+
     - name: Upload build artifacts
       uses: actions/upload-pages-artifact@v3
       with:
@@ -45,21 +73,3 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@v2
 
-  # deploy-gh-pages:
-  #   name: 🚀 Deploy to GitHub Pages
-  #   runs-on: ubuntu-latest
-  #   needs: build
-
-  #   steps:
-  #   - name: Download build artifacts
-  #     uses: actions/download-artifact@v3
-  #     with:
-  #       name: build
-  #       path: dist/
-
-  #   - name: Deploy to GitHub Pages
-  #     uses: peaceiris/actions-gh-pages@v3
-  #     with:
-  #       github_token: ${{ secrets.GITHUB_TOKEN }}
-  #       publish_dir: ./dist
-  #       publish_branch: gh-pages
