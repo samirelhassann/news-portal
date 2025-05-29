@@ -6,10 +6,11 @@
     "start": "ng serve",
     "start:prod": "ng serve --configuration production",
     "prebuild": "node scripts/generate-env.js",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint --fix",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "github-build": "ng build --configuration production --base-href 'https://samirelhassann.github.io/news-portal/'"
   },
   "private": true,
   "dependencies": {

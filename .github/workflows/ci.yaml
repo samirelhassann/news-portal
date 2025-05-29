@@ -38,13 +38,13 @@ jobs:
         NODE_ENV: ${{ secrets.NODE_ENV }}
         NEWS_API_HOST: ${{ secrets.NEWS_API_HOST }}
         NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
-      run: pnpm run build
+      run: pnpm run github-build
 
     - name: Upload static files as artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3 
       with:
-        path: dist/news-portal
+        path: dist/news-portal/browser
 
   deploy:
     environment:
