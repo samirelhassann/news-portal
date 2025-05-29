@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Make Hooks",
+      "type": "shell",
+      "command": "make hooks",
+      "group": "none",
+      "presentation": {
+        "close": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

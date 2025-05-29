@@ -1,0 +1,45 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+@import "tailwindcss";
+
+body {
+  font-family: 'Mona Sans', sans-serif;
+}
+@theme {
+  --color-magenta-400: #986DFF;
+  --color-magenta-700: #986DFF99;
+  --color-lime-400: #8EFF6D;
+  --color-sunshine-400: #FF9A6D;
+  --color-ocean-400: #6D98FF;
+  --color-silver-300: #9ca3af;
+  --color-silver-500: #9CA3AF4D;
+  --color-silver-600: #1f1f1f;
+  --color-silver-700: #151515;
+  --color-silver-800: #111111;
+}
+
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::selection {
+  background-color: rgb(152 109 255 / 40%);
+  color: white;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9CA3AF4D;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  margin-left: 10px;
+  background-color: #986DFF99;
+}

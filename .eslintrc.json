@@ -1,0 +1,112 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "warnOnUnsupportedTypeScriptVersion": false
+  },
+  "plugins": ["@typescript-eslint", "import-helpers", "unused-imports", "@angular-eslint", "stylelint"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "max-classes-per-file": 0,
+        "prettier/prettier": "error",
+        "no-underscore-dangle": 0,
+        "@typescript-eslint/lines-between-class-members": 0,
+        "@angular-eslint/prefer-standalone": 1,
+        "class-methods-use-this": 0,
+        "@typescript-eslint/quotes": ["error", "double"],
+        "no-use-before-define": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved": 0,
+        "import/extensions": 0,
+        "import/order": 0,
+        "import/prefer-default-export": 0,
+        "quotes": ["error", "double"],
+        "import-helpers/order-imports": [
+          "error",
+          {
+            "newlinesBetween": "always",
+            "groups": [
+              "/^@angular/",
+              "module",
+              ["/^@shared/", "/^@/"],
+              "/^~/",
+              "/components/",
+              ["/assets/", "/style/", "/css/"],
+              ["parent", "sibling", "index"]
+            ],
+            "alphabetize": {
+              "order": "asc",
+              "ignoreCase": true
+            }
+          }
+        ],
+        "no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "bracketSameLine": true,
+            "singleAttributePerLine": true,
+            "parser": "angular",
+            "usePrettierrc": false,
+            "printWidth": 120
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.scss"],
+      "plugins": ["stylelint"],
+      "rules": {
+        "stylelint/stylelint": "error"
+      }
+    }
+  ]
+}

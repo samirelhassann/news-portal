@@ -1,0 +1,16 @@
+<div
+  class="flex items-center gap-2 justify-center md:justify-start flex-wrap"
+  *ngIf="selectedFilter$ | async as selectedFilter">
+  <div
+    *ngFor="let item of filters"
+    class="group px-3 py-1 data-[selected=true]:bg-magenta-700 font-semibold rounded-full cursor-pointer flex items-center gap-1.5 border data-[selected=true]:border-transparent border-magenta-400"
+    (click)="onSelect(item)"
+    [attr.data-selected]="selectedFilter.title === item.title">
+    <lucide-icon
+      [img]="item.icon"
+      [size]="20" />
+    <span>
+      {{ item.title }}
+    </span>
+  </div>
+</div>

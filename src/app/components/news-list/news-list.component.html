@@ -1,0 +1,45 @@
+<div class="flex flex-col w-full h-full">
+  <div
+    class="flex gap-2 items-center justify-center md:justify-start"
+    *ngIf="selectedFilter$ | async as selectedFilter">
+    <lucide-icon
+      [img]="selectedFilter.icon"
+      [size]="32"
+      class="text-magenta-400" />
+    <h1 class="text-4xl font-semibold">{{ selectedFilter.title }}</h1>
+  </div>
+
+  <div
+    class="overflow-y-scroll h-[60vh] mt-6 md:pr-1"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false">
+    <div class="md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 flex flex-col">
+      <app-card
+        *ngFor="let item of news$ | async"
+        [title]="item.title"
+        [imageUrl]="item.imageUrl"
+        [url]="item.url"
+        [publishDate]="item.publishedAt"
+        [sourceName]="item.sourceName" />
+      <ng-container *ngIf="loading$ | async">
+        <p-skeleton
+          class="rounded-lg"
+          width="100%"
+          height="256px"
+          *ngFor="let _ of loadingArray" />
+      </ng-container>
+    </div>
+    <ng-container *ngIf="noMore$ | async">
+      <div class="flex gap-2 items-center justify-center mt-10">
+        <lucide-icon
+          [img]="CircleSlashIcon"
+          [size]="24"
+          class="text-magenta-400" />
+        <p class="text-center text-silver-300">No more news founded.</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
