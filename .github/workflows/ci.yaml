@@ -40,11 +40,6 @@ jobs:
         NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
       run: pnpm run build
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v4
-      with:
-        path: './dist'
-
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
