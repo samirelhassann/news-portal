@@ -11,5 +11,5 @@ import { NewsListComponent } from "./components/news-list/news-list.component";
   templateUrl: "./app.component.html",
 })
 export class AppComponent {
-  title = "prime-ng-template";
+  title = "news-portal";
 }
